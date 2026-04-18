@@ -1,0 +1,453 @@
+.officer-page {
+  min-height: calc(100vh - 64px);
+  padding: 32px 0 64px;
+}
+
+.officer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.officer-header h2 {
+  font-size: 26px;
+  color: var(--navy);
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.officer-sub {
+  font-size: 16px;
+  color: var(--gray-500);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.officer-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+}
+
+.officer-emp {
+  text-align: right;
+  background: var(--white);
+  padding: 14px 22px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--card-shadow);
+  border-left: 4px solid var(--gold);
+}
+
+.officer-emp-label {
+  display: block;
+  font-size: 11px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.officer-emp-value {
+  display: block;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+
+/* Current posting */
+.officer-current {
+  border-left: 4px solid var(--crimson);
+}
+
+.officer-current-main {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 24px;
+  align-items: center;
+}
+
+.officer-ministry {
+  font-size: 15px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.officer-section {
+  font-size: 26px;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 4px 0 12px;
+  line-height: 1.2;
+}
+
+.officer-section-meta {
+  font-size: 13px;
+  color: var(--gray-700);
+}
+
+.officer-tenure-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: var(--white);
+  padding: 18px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.officer-tenure-label {
+  font-size: 11px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.officer-tenure-value {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.officer-tenure-unit {
+  font-size: 13px;
+  color: var(--gray-300);
+}
+
+.officer-tenure-sub {
+  font-size: 10px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* District tier chip */
+.tier-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-left: 4px;
+}
+
+.tier-A { background: #dbeafe; color: #1d4ed8; }
+.tier-B { background: #fef3c7; color: #b45309; }
+.tier-C { background: #fee2e2; color: #b91c1c; }
+.tier-D { background: #ffe4e6; color: #9f1239; }
+.tier-Specialist { background: #e9d5ff; color: #6b21a8; }
+
+/* Posting history */
+.history-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.history-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--gray-200);
+}
+
+.history-item {
+  position: relative;
+  padding: 14px 0 14px 16px;
+  border-bottom: 1px dashed var(--gray-200);
+}
+
+.history-item:last-child { border-bottom: none; }
+
+.history-dot {
+  position: absolute;
+  left: -27px;
+  top: 18px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--gray-300);
+}
+
+.history-current .history-dot {
+  background: var(--crimson);
+  box-shadow: 0 0 0 2px var(--crimson);
+}
+
+.history-dates {
+  font-size: 12px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.history-duration {
+  background: var(--off-white);
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.history-ministry {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.history-section {
+  font-size: 16px;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 2px 0 6px;
+}
+
+@media (max-width: 640px) {
+  .officer-current-main { grid-template-columns: 1fr; }
+  .officer-tenure-box { padding: 14px; }
+  .officer-tenure-value { font-size: 36px; }
+}
+
+/* ─── Officer score breakdown + orders + appeals (spec gap fix) ─── */
+.score-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.score-hero-label {
+  font-size: 11px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.score-hero-v {
+  font-size: 36px;
+  color: var(--gold-light);
+  font-weight: 700;
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.score-hero-sub {
+  font-size: 11px;
+  color: var(--gray-300);
+}
+
+.score-criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.criterion-row {
+  padding: 12px;
+  background: var(--off-white);
+  border-left: 3px solid var(--crimson);
+  border-radius: var(--radius-sm);
+}
+
+.criterion-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.criterion-top strong { color: var(--navy); font-size: 14px; }
+
+.criterion-weight {
+  padding: 2px 8px;
+  background: var(--navy);
+  color: var(--gold-light);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.criterion-detail {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.criterion-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.criterion-bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--gray-200);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.criterion-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--crimson) 100%);
+  border-radius: 999px;
+}
+
+.criterion-raw {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-700);
+  min-width: 60px;
+  text-align: right;
+}
+
+.criterion-weighted {
+  font-weight: 700;
+  color: var(--success);
+  font-size: 12px;
+}
+
+/* Order row */
+.order-list { display: flex; flex-direction: column; gap: 14px; }
+
+.order-row {
+  padding: 14px;
+  background: var(--off-white);
+  border-left: 4px solid var(--crimson);
+  border-radius: var(--radius-sm);
+}
+
+.order-row-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.order-row-head small { margin-left: auto; color: var(--gray-500); font-size: 11px; }
+
+.order-route {
+  font-size: 13px;
+  padding: 8px 12px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.order-route strong { color: var(--navy); }
+
+.order-arrow {
+  color: var(--crimson);
+  font-weight: 700;
+  margin: 0 8px;
+}
+
+.order-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.order-meta strong { color: var(--gray-700); }
+
+.order-override {
+  color: var(--error);
+  font-weight: 700;
+}
+
+.order-dsc {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: var(--navy);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  color: var(--gold-light);
+}
+
+.order-dsc code { color: var(--white); }
+
+.order-actions { margin-top: 10px; }
+
+.appeal-form {
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.appeal-form h5 {
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Appeal history */
+.appeal-mine {
+  padding: 12px;
+  background: var(--off-white);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}
+
+.appeal-mine-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.appeal-mine-head strong { flex: 1; color: var(--navy); }
+.appeal-mine-head small { color: var(--gray-500); font-size: 11px; }
+
+.appeal-mine-desc {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  padding: 8px 10px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+}
+
+.appeal-mine-decision {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: var(--white);
+  border-left: 3px solid var(--success);
+  font-size: 12px;
+  color: var(--gray-700);
+  border-radius: var(--radius-sm);
+}
+
+.appeal-mine-decision strong { color: var(--success); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; }

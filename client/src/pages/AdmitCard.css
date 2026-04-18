@@ -1,0 +1,227 @@
+.admit-page {
+  padding: 32px 0 48px;
+  min-height: calc(100vh - 64px);
+}
+
+.admit-page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.admit-card-preview {
+  background: var(--white);
+  max-width: 720px;
+  margin: 24px auto;
+  border: 2px solid var(--crimson);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.admit-header {
+  background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-light) 100%);
+  color: var(--white);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admit-seal {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 3px solid var(--gold);
+  flex-shrink: 0;
+}
+
+.admit-h-np {
+  font-family: var(--font-nepali);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.admit-h-en {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.admit-h-sub {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.admit-title-row {
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admit-title-row h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.admit-title-row span {
+  font-size: 12px;
+  color: var(--gold-light);
+}
+
+.admit-body {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+}
+
+.admit-photo {
+  width: 140px;
+  height: 170px;
+  border: 1.5px dashed var(--gray-300);
+  background: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.admit-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+
+.admit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0;
+}
+
+.admit-row-label {
+  font-size: 10px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.admit-row-value {
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.admit-row-bold {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--crimson);
+  font-family: 'DM Sans', monospace;
+  letter-spacing: 0.02em;
+}
+
+.admit-instructions {
+  padding: 18px 24px;
+  background: var(--off-white);
+  border-top: 1px solid var(--gray-200);
+  font-size: 12px;
+  color: var(--gray-700);
+}
+
+.admit-instructions strong {
+  color: var(--crimson);
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.admit-instructions ol {
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+.admit-sigs {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 24px 24px;
+  gap: 40px;
+}
+
+.sig-box {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sig-line {
+  border-top: 1px solid var(--navy);
+  margin-bottom: 6px;
+}
+
+.admit-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+@media print {
+  .no-print,
+  .navbar,
+  .app-footer {
+    display: none !important;
+  }
+  .admit-card-preview {
+    margin: 0;
+    border: 2px solid #c41e3a;
+    box-shadow: none;
+  }
+  .app-main {
+    padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .admit-body {
+    grid-template-columns: 1fr;
+  }
+  .admit-photo {
+    margin: 0 auto;
+  }
+  .admit-data {
+    grid-template-columns: 1fr;
+  }
+  .admit-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}

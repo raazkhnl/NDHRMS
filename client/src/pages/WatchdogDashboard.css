@@ -1,0 +1,324 @@
+.watchdog-dashboard {
+  padding: 32px 0 64px;
+  min-height: calc(100vh - 64px);
+}
+
+.watchdog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.watchdog-header h2 {
+  font-size: 22px;
+  color: var(--navy);
+  font-weight: 700;
+  margin-top: 6px;
+  max-width: 800px;
+}
+
+.watchdog-sub {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.watchdog-readonly {
+  font-size: 11px;
+  color: var(--crimson);
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.watchdog-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+}
+
+.watchdog-badge-ciaa {
+  background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
+}
+
+.watchdog-badge-oag {
+  background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+}
+
+/* Integrity status */
+.integrity-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-md);
+  background: var(--off-white);
+}
+
+.integrity-badge {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.integrity-badge.intact {
+  background: var(--success);
+  color: var(--white);
+}
+
+.integrity-badge.broken {
+  background: var(--error);
+  color: var(--white);
+}
+
+.integrity-detail {
+  font-size: 13px;
+  color: var(--gray-700);
+}
+
+/* Metrics */
+.watchdog-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.wd-metric {
+  background: var(--off-white);
+  padding: 18px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border-top: 3px solid var(--navy);
+}
+
+.wd-metric-v {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.wd-metric-l {
+  font-size: 11px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Alert cards */
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alert-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--off-white);
+  border-left: 4px solid var(--gold);
+}
+
+.alert-card.severity-critical { border-left-color: var(--error); background: #fef2f2; }
+.alert-card.severity-warning  { border-left-color: var(--warning); background: #fffbeb; }
+.alert-card.severity-info     { border-left-color: var(--navy); }
+
+.alert-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.alert-head strong { flex: 1; color: var(--navy); font-size: 15px; }
+
+.severity-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.severity-badge.severity-critical { background: var(--error); color: var(--white); }
+.severity-badge.severity-warning { background: var(--warning); color: var(--white); }
+.severity-badge.severity-info { background: var(--navy); color: var(--gold-light); }
+
+.alert-desc {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  padding: 10px 12px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.alert-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+.alert-resolution {
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--white);
+  border-left: 3px solid var(--success);
+  font-size: 12px;
+  color: var(--gray-700);
+  border-radius: var(--radius-sm);
+}
+
+.alert-resolution strong { color: var(--success); }
+
+.alert-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+/* Audit log */
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.audit-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 14px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+  font-size: 12px;
+}
+
+.audit-seq {
+  font-family: monospace;
+  color: var(--gray-500);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.audit-action {
+  font-weight: 700;
+  color: var(--crimson);
+  font-family: monospace;
+  font-size: 12px;
+  margin-bottom: 2px;
+  letter-spacing: 0.02em;
+}
+
+.audit-summary {
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.audit-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.audit-hashes {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--gray-200);
+  font-size: 10px;
+  color: var(--gray-500);
+  flex-wrap: wrap;
+}
+
+.audit-hashes code {
+  font-family: monospace;
+  background: var(--navy);
+  color: var(--gold-light);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.audit-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+/* Integrity result */
+.integrity-result {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.integrity-result.intact {
+  background: #d1fae5;
+  border-left: 4px solid var(--success);
+}
+
+.integrity-result.broken {
+  background: #fee2e2;
+  border-left: 4px solid var(--error);
+}
+
+.integrity-icon {
+  font-size: 48px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.integrity-result.intact .integrity-icon { color: var(--success); }
+.integrity-result.broken .integrity-icon { color: var(--error); }
+
+.integrity-result h4 {
+  color: var(--navy);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.integrity-result.broken h4 { color: var(--error); }
+
+.integrity-result p {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .watchdog-metrics { grid-template-columns: repeat(2, 1fr); }
+  .audit-row { grid-template-columns: 1fr; }
+}

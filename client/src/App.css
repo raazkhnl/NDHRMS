@@ -1,0 +1,126 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  /* padding-top: 64px; */
+  /* navbar height */
+}
+
+.app-footer {
+  background: var(--navy);
+  color: var(--gray-300);
+  padding: 64px 0 0 0;
+  font-size: 14px;
+  border-top: 3px solid var(--crimson);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+.footer-block h4 {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-block a {
+  display: block;
+  color: var(--gray-300);
+  margin-bottom: 12px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-block a:hover {
+  color: var(--gold-light);
+  transform: translateX(4px);
+}
+
+.footer-logo {
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-badge {
+  background: var(--crimson);
+  color: var(--white);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.footer-tag {
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+.footer-dev {
+  color: var(--gray-400);
+  line-height: 1.8;
+}
+
+.footer-dev strong {
+  color: var(--gray-200);
+}
+
+.footer-dev a {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.footer-dev a:hover {
+  transform: none;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--navy-light);
+  padding: 24px 0;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.footer-bottom a {
+  color: var(--gray-300);
+  transition: var(--transition);
+}
+
+.footer-bottom a:hover {
+  color: var(--gold-light);
+}
+
+/* Responsive Footer */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-block h4 {
+    margin-bottom: 16px;
+  }
+}
