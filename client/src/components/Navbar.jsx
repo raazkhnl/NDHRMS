@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="navbar-inner container">
         <Link to="/" className="navbar-brand" onClick={() => setMobileOpen(false)}>
           <div className="navbar-crest" aria-hidden="true">
-            <span className="logo-badge">NDHRMS </span>
+            <span className="logo-badge skiptranslate" >NDHRMS </span>
           </div>
           <div className="navbar-title">
             <span className="title-np nepali">नेपाल डिजिटल मानव स्रोत व्यवस्थापन प्रणाली</span>
@@ -99,6 +99,7 @@ export default function Navbar() {
               <Link to="/admin/login" className="nav-link nav-link-admin" onClick={() => setMobileOpen(false)}>Admin</Link>
             </>
           )}
+          <div id="google_translate_element" className="translate-widget" />
         </nav>
       </div>
     </header>

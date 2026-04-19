@@ -364,3 +364,29 @@
 		border: none;
 	}
 }
+
+/* ─── Google Translate Widget ─── */
+.translate-widget {
+	margin-left: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.translate-widget select {
+	cursor: pointer;
+	border: 1px solid var(--gray-200);
+	border-radius: var(--radius-sm);
+	padding: 4px 8px;
+	font-size: 13px;
+	color: var(--navy);
+	background: var(--off-white);
+}
+
+/* Hide the top bar that Google Translate sometimes adds */
+body {
+	top: 0 !important;
+}
+
+.skiptranslate iframe {
+	display: none !important;
+}

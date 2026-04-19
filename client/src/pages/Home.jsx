@@ -66,13 +66,13 @@ export default function Home() {
           <div className="hero-crest">
             <div className="hero-crest-ring">
               <div className="hero-crest-inner">
-                <span className="hero-crest-text">NDHRMS</span>
+                <span className="hero-crest-text skiptranslate" translate="no">NDHRMS</span>
                 <span className="hero-crest-year">२०८२</span>
               </div>
             </div>
           </div>
-          <h1 className="hero-title nepali">नेपाल डिजिटल मानव स्रोत व्यवस्थापन</h1>
-          <h2 className="hero-subtitle">Nepal Digital HR Management System</h2>
+          <h1 className="hero-title nepali">नेपाल डिजिटल मानव स्रोत व्यवस्थापन प्रणाली</h1>
+          <h2 className="hero-subtitle skiptranslate">Nepal Digital HR Management System</h2>
           <p className="hero-tagline">Integrated PSC Recruitment · MoFAGA Transfer · HRMIS</p>
           <Link to="/login" className="hero-cta">
             Get Started →

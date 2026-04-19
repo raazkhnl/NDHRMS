@@ -103,7 +103,7 @@ export default function App() {
         <div className="container footer-grid">
           <div className="footer-block">
             <div className="footer-logo">
-              <span className="logo-badge">NDHRMS </span>
+              <span className="logo-badge skiptranslate">NDHRMS </span>
               <strong>Nepal Digital HR Management System</strong>
             </div>
             <p className="footer-tag">
