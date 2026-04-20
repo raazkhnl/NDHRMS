@@ -578,7 +578,139 @@ All routes return JSON. Auth headers: `Authorization: Bearer <token>`.
 
 ---
 
-## 11. Production deployment checklist
+## 11. Vercel Deployment — Step-by-step
+
+> Deploy as **two separate Vercel projects**: one for `server/`, one for `client/`.  
+> Architecture after deploy: `client.vercel.app` → `server.vercel.app/api` → MongoDB Atlas
+
+---
+
+### Prerequisites
+
+- [Vercel account](https://vercel.com) (free tier is sufficient)
+- [MongoDB Atlas](https://cloud.mongodb.com) cluster (free M0 tier works)
+- GitHub repo containing this codebase (`client/` + `server/` in the root)
+
+---
+
+### Step 1 — MongoDB Atlas
+
+1. Create a free cluster at [cloud.mongodb.com](https://cloud.mongodb.com)
+2. **Database Access** → Add user → note the username and password
+3. **Network Access** → Add IP → **`0.0.0.0/0`** (allow all — required for Vercel's dynamic IPs)
+4. **Connect** → Drivers → copy the connection string:
+   ```
+   mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/ndhrms?retryWrites=true&w=majority
+   ```
+   URL-encode any special characters in the password (e.g. `@` → `%40`, `#` → `%23`).
+
+---
+
+### Step 2 — Push to GitHub
+
+```bash
+git add .
+git commit -m "chore: vercel deployment config"
+git push
+```
+
+---
+
+### Step 3 — Deploy the SERVER
+
+1. Go to [vercel.com/new](https://vercel.com/new) → **Import** your GitHub repo
+2. Set **Root Directory** → `server`
+3. **Framework Preset** → Other
+4. **Build Command** → *(leave empty)*
+5. **Output Directory** → *(leave empty)*
+6. **Environment Variables** — add all of the following:
+
+| Variable | Value |
+|----------|-------|
+| `MONGODB_URI` | `mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/ndhrms?retryWrites=true&w=majority` |
+| `JWT_SECRET` | Generate with `openssl rand -hex 32` |
+| `JWT_EXPIRES_IN` | `24h` |
+| `NODE_ENV` | `production` |
+| `CLIENT_ORIGIN` | *(set after client deploy — see Step 5)* |
+
+7. Click **Deploy** → wait for green ✅
+8. Copy your server URL, e.g. `https://ndhrms-server.vercel.app`
+9. **Verify**: open `https://ndhrms-server.vercel.app/health` → should return `{ "status": "ok" }`
+
+---
+
+### Step 4 — Seed the database
+
+Run seed once against your Atlas cluster from your local machine:
+
+```bash
+cd server
+# Temporarily set MONGODB_URI to your Atlas connection string:
+$env:MONGODB_URI="mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/ndhrms?..."
+npm run seed
+```
+
+> Or add `MONGODB_URI` to your local `server/.env` and run `npm run seed` normally.
+
+---
+
+### Step 5 — Deploy the CLIENT
+
+1. Go to [vercel.com/new](https://vercel.com/new) → **Import** the same GitHub repo
+2. Set **Root Directory** → `client`
+3. **Framework Preset** → Vite
+4. **Environment Variables**:
+
+| Variable | Value |
+|----------|-------|
+| `VITE_API_BASE_URL` | `https://ndhrms-server.vercel.app/api` *(your server URL from Step 3)* |
+
+5. Click **Deploy** → wait for green ✅
+6. Copy your client URL, e.g. `https://ndhrms-client.vercel.app`
+
+---
+
+### Step 6 — Link CORS back to the server
+
+1. In Vercel → your **server project** → **Settings → Environment Variables**
+2. Add / update:
+
+| Variable | Value |
+|----------|-------|
+| `CLIENT_ORIGIN` | `https://ndhrms-client.vercel.app` |
+
+3. Go to **Deployments** → **⋯ → Redeploy** (select latest deployment)
+
+---
+
+### Step 7 — Verify end-to-end
+
+| Test | Expected result |
+|------|-----------------|
+| `https://ndhrms-server.vercel.app/health` | `{ "status": "ok", "dbConnection": "connected" }` |
+| Open client URL → `/login` | App loads, no console errors |
+| Enter any NID on `/login` | NidLookup badge resolves (API is reachable) |
+| Refresh on `/login` | No 404 (SPA rewrite works) |
+| Login as PSC admin `999-999-9999` / `admin123` | Dashboard appears |
+
+---
+
+### Redeploying after code changes
+
+Vercel auto-deploys on every `git push` to `main`:
+
+```bash
+git add .
+git commit -m "your changes"
+git push
+```
+
+To update environment variables without a code change:  
+Vercel Dashboard → Project → Settings → Environment Variables → edit → **Redeploy**.
+
+---
+
+### Vercel deployment — production hardening still needed
 
 This is a **reference implementation**. Before deploying against real civil-service data:
 
@@ -586,15 +718,12 @@ This is a **reference implementation**. Before deploying against real civil-serv
 - [ ] Wire licensed SMS gateway (NTC/NCell) for real OTP dispatch
 - [ ] MongoDB with TLS + auth + replica set + managed backups
 - [ ] Rotate JWT secret regularly; consider short tokens + refresh
-- [ ] Rate-limit auth endpoints (express-rate-limit)
+- [ ] Rate-limit auth endpoints (`express-rate-limit`)
 - [ ] CSRF protection if switching to cookies
-- [ ] HTTPS at ingress (nginx/ALB/Cloudflare)
-- [ ] WAF in front of the client container
-- [ ] Audit log retention on WORM storage with periodic independent re-verification
-- [ ] Replace NID and National Health Registry simulations with real API integrations under Data Protection Act
+- [ ] WAF in front of the client (Cloudflare recommended)
+- [ ] Audit log retention on WORM storage
 - [ ] Scale for 40k officers: shard by ministry, BullMQ worker queue for scoring
 - [ ] Observability: Prometheus metrics, OpenTelemetry traces, structured logs (pino)
-- [ ] DR plan: backups + audit chain export for independent verification
 
 ---
 
