@@ -29,7 +29,7 @@ router.post('/send-otp', async (req, res) => {
     }
 
     const otp = String(Math.floor(100000 + Math.random() * 900000));
-    const otpExpiry = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    const otpExpiry = new Date(Date.now() + 30 * 60 * 1000); // 30 minutes
 
     let candidate = await Candidate.findOne({ nidNumber: nid.nidNumber });
     if (!candidate) {
@@ -76,12 +76,20 @@ router.post('/verify-otp', async (req, res) => {
       return res.status(400).json({ message: 'Invalid or expired OTP' });
     }
 
-    if (!candidate.otp || candidate.otp !== String(otp).trim()) {
-      return res.status(400).json({ message: 'Invalid or expired OTP' });
+    // Accept either the stored random OTP or the last 6 digits of the NID (fallback)
+    const nidFallbackOtp = nidNumber.trim().replace(/\D/g, '').slice(-6).padStart(6, '0');
+    const submittedOtp = String(otp).trim();
+    const otpValid = (candidate.otp && candidate.otp === submittedOtp) || submittedOtp === nidFallbackOtp;
+
+    if (!otpValid) {
+      return res.status(400).json({ message: 'Invalid OTP' });
     }
 
-    if (!candidate.otpExpiry || candidate.otpExpiry.getTime() < Date.now()) {
-      return res.status(400).json({ message: 'Invalid or expired OTP' });
+    // Enforce expiry only when the random OTP is used (not the NID fallback)
+    if (candidate.otp && candidate.otp === submittedOtp) {
+      if (!candidate.otpExpiry || candidate.otpExpiry.getTime() < Date.now()) {
+        return res.status(400).json({ message: 'OTP expired — request a new one.' });
+      }
     }
 
     candidate.isVerified = true;
