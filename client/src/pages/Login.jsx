@@ -163,7 +163,7 @@ export default function Login() {
             <>
               <div className="otp-notice">
                 OTP sent to <strong>{maskedMobile}</strong>
-                <span className="otp-hint">Check the server terminal for the code.</span>
+                <span className="otp-hint">Testing: Use last 6 digits of the NID as OTP.</span>
               </div>
 
               <div className="login-divider" />
